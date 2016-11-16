@@ -1,5 +1,5 @@
-var Scrabble = require('./scrabble');
-var Player = require('./player');
+var Scrabble = require('../scrabble');
+var Player = require('../player');
 
 describe('Scrabble', function() {
 

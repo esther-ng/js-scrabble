@@ -12,9 +12,29 @@ describe('Scrabble', function() {
     expect(Scrabble.score(word)).toBe(13);
   });
 
+  it('gives a bonus of 50 points if 7 letters are used', function() {
+    var word = "whallup";
+    expect(Scrabble.score(word)).toBe(65);
+  });
+
   it('returns the highest scoring word', function() {
     var words = ["how", "are", "you", "pizzazz", "whallup", "hello"];
     expect(Scrabble.highestScoreFrom(words)).toBe("pizzazz");
+  });
+
+  it('highest scoring word returns the shorter word if there is a tie', function() {
+    var words = ["dog", "hi", "tours"];
+    expect(Scrabble.highestScoreFrom(words)).toBe("hi");
+  });
+
+  it('highest scoring word returns the 7 letter word if there is a tie', function() {
+    var words = ["zzzzzx", "aaaaaad", "tours"];
+    expect(Scrabble.highestScoreFrom(words)).toBe("aaaaaad");
+  });
+
+  it('highest scoring word returns the first word if there is a tie in both score and length', function() {
+    var words = ["zzzzzj", "zzzzzx", "aaaaad", "tours"];
+    expect(Scrabble.highestScoreFrom(words)).toBe("zzzzzj");
   });
 });
 
@@ -42,6 +62,7 @@ describe('Player', function() {
   it('can tell you if the player hasWon', function() {
     var jill = new Player('Jill');
     jill.play("pizzazz");
+    expect(jill.hasWon()).toBe(false);
     jill.play("whallup");
     expect(jill.hasWon()).toBe(true);
   });
@@ -58,6 +79,20 @@ describe('Player', function() {
     jill.play("pizzazz");
     jill.play("whallup");
     jill.play("word");
-    expect(jill._plays).not.toContain("word");    
+    expect(jill._plays).not.toContain("word");
+  });
+
+  it('will return the highest scoring word the player played', function() {
+    var jill = new Player('Jill');
+    jill.play("pizzazz");
+    jill.play("whallup");
+    expect(jill.highestScoringWord()).toBe("pizzazz");
+  });
+
+  it('will return the highest scoring word score the player played', function() {
+    var jill = new Player('Jill');
+    jill.play("pizzazz");
+    jill.play("whallup");
+    expect(jill.highestWordScore()).toBe(95);
   });
 });

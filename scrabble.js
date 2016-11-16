@@ -40,52 +40,52 @@ var Scrabble = {
   }
 };
 
-console.log(Scrabble.highestScoreFrom(["how", "are", "you", "pizzazz", "whallupp", "hello"]));
+// console.log(Scrabble.highestScoreFrom(["how", "are", "you", "pizzazz", "whallupp", "hello"]));
 
-var Player = function(name) {
-  this._name = name;
-  this._plays = [];
-};
-
-Player.prototype.play = function(word) {
-  this._plays.push(word);
-};
-
-Player.prototype.totalScore = function() {
-  var my_score = 0;
-  this._plays.forEach(function(word) {
-    my_score += Scrabble.score(word);
-  });
-  return my_score;
-};
-
-Player.prototype.hasWon = function() {
-  return this.totalScore() > 100 ? true : false;
-};
-
-Player.prototype.highestScoringWord = function() {
-  return Scrabble.highestScoreFrom(this._plays);
-};
-
-Player.prototype.highestWordScore = function() {
-  return Scrabble.score(this.highestScoringWord());
-};
+// var Player = function(name) {
+//   this._name = name;
+//   this._plays = [];
+// };
+//
+// Player.prototype.play = function(word) {
+//   this._plays.push(word);
+// };
+//
+// Player.prototype.totalScore = function() {
+//   var my_score = 0;
+//   this._plays.forEach(function(word) {
+//     my_score += Scrabble.score(word);
+//   });
+//   return my_score;
+// };
+//
+// Player.prototype.hasWon = function() {
+//   return this.totalScore() > 100 ? true : false;
+// };
+//
+// Player.prototype.highestScoringWord = function() {
+//   return Scrabble.highestScoreFrom(this._plays);
+// };
+//
+// Player.prototype.highestWordScore = function() {
+//   return Scrabble.score(this.highestScoringWord());
+// };
 
 // Player.prototype = Scrabble;
 
-testPlayer = new Player("Jill");
-testPlayer.play("Hi");
-testPlayer.play("Hello");
-console.log(testPlayer.totalScore());
-console.log(testPlayer.hasWon());
-console.log(testPlayer.highestScoringWord());
-console.log(testPlayer.highestWordScore());
-console.log(testPlayer);
+// testPlayer = new Player("Jill");
+// testPlayer.play("Hi");
+// testPlayer.play("Hello");
+// console.log(testPlayer.totalScore());
+// console.log(testPlayer.hasWon());
+// console.log(testPlayer.highestScoringWord());
+// console.log(testPlayer.highestWordScore());
+// console.log(testPlayer);
 // console.log(testPlayer.score("Hi"));
 
 // YOUR CODE HERE
-Scrabble.prototype.helloWorld = function() {
-  return 'hello world!';
-};
+// Scrabble.prototype.helloWorld = function() {
+//   return 'hello world!';
+// };
 
 module.exports = Scrabble;

@@ -1,6 +1,6 @@
 
 var TileBag = function() {
-  this.tiles = ['J','K','Q','X','Z'];
+  var bag = ['J','K','Q','X','Z'];
   var addToBag = {
     2: ['B', 'C', 'F', 'H', 'M', 'P', 'V', 'W', 'Y'],
     3: ['G'],
@@ -15,14 +15,32 @@ var TileBag = function() {
   nums.forEach(function(num) {
     addToBag[num].forEach(function(letter) {
       for (var i = num; i > 0; i--) {
-        this.tiles.push(letter);
+        bag.push(letter);
       }
     });
   });
-  // addToBag.forEach(function(letter) {
-  //   this.tiles.push(letter);
-  // })
+
+  this.tiles = bag;
 };
 
-var bag = new TileBag;
-console.log(bag.tiles);
+TileBag.prototype.tilesLeft = function() {
+  return this.tiles.length;
+};
+
+TileBag.prototype.drawTiles = function(num) {
+  var tilesDrawn = [];
+  for (var i = 0; i < num; i++) {
+    var randIndex = Math.floor(Math.random() * this.tiles.length);
+    var tile = this.tiles[randIndex];
+    tilesDrawn.push(tile);
+    this.tiles.splice(randIndex, 1);
+  }
+  return tilesDrawn;
+};
+
+// var bag = new TileBag;
+// console.log(bag.tiles.length);
+// console.log(bag.drawTiles(5));
+// console.log(bag.tiles.length);
+
+module.exports = TileBag;

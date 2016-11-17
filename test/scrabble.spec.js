@@ -1,5 +1,6 @@
 var Scrabble = require('../scrabble');
 var Player = require('../player');
+var TileBag = require('../tilebag');
 
 describe('Scrabble', function() {
 
@@ -95,4 +96,28 @@ describe('Player', function() {
     jill.play("whallup");
     expect(jill.highestWordScore()).toBe(95);
   });
+});
+
+describe('TileBag', function() {
+
+  it('will create a new instance of the TileBag with 98 tiles', function() {
+    var bag = new TileBag();
+    expect(bag.tiles.length).toBe(98);
+  });
+
+  it('will allow a number of tiles to be randomly drawn', function() {
+    var bag = new TileBag();
+    var draw1 = bag.drawTiles(5);
+    var draw2 = bag.drawTiles(5);
+    expect(draw1.length).toBe(5);
+    expect(draw1).not.toBe(draw2);
+  });
+
+  it('will remove the tiles drawn from the bag', function() {
+    var bag = new TileBag();
+    var beforeDraw = bag.tiles.length;
+    var draw1 = bag.drawTiles(5);
+    expect(beforeDraw - bag.tilesLeft()).toBe(5);
+  });
+
 });

@@ -7,7 +7,8 @@
   "license": "ISC",
   "dependencies": {
     "istanbul": "^0.4.5",
-    "jasmine-node": "^1.14.5"
+    "jasmine-node": "^1.14.5",
+    "word-list": "^1.0.1"
   },
   "scripts": {
     "test": "istanbul cover --include-all-sources jasmine-node test"

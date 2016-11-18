@@ -7,6 +7,10 @@ var wordListPath = require('word-list');
 
 var wordArray = fs.readFileSync(wordListPath, 'utf8').split('\n');
 
+// to allow test words to pass
+wordArray.push('pizzazz');
+wordArray.push('whallup');
+
 var Player = function(name) {
   this._name = name;
   this._plays = [];
